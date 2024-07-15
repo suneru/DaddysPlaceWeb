@@ -1,11 +1,24 @@
-
 <mat-toolbar color="blue">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-<button routerLink="" mat-button>Login</button>
-<button routerLink="category-add" mat-button>Category Add</button>
+    <span>{{title}}</span>
+    <span class="spacer"></span>
+    <div>{{userName}}</div>
 </mat-toolbar>
 
- 
+<mat-drawer-container class="top-container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <div class="row my-2">
+            <button routerLink="" (click)="drawer.toggle()" mat-button>Login</button>
+        </div>
+        <div class="row mb-2">
+            <button routerLink="pos-dashboard" (click)="drawer.toggle()" mat-button>POS Dashboard</button>
+        </div>
+    </mat-drawer>
 
+    <div class="sidenav-content">
+        <router-outlet />
+    </div>
+
+</mat-drawer-container>
