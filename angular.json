@@ -60,7 +60,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "DaddysPlaceWeb:build:production"
+              "buildTarget": "DaddysPlaceWeb:build:production",
+              "proxyConfig": "src/proxyConfig.json"
             },
             "development": {
               "buildTarget": "DaddysPlaceWeb:build:development"

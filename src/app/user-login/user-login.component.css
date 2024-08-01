@@ -1,4 +1,4 @@
-body{
+.parent{
 	margin: 0;
 	padding: 0;
 	display: flex;
@@ -9,7 +9,6 @@ body{
 	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
 .main{
-  align-content: center;
 	width: 350px;
 	height: 500px;
 	background: red;
@@ -38,7 +37,7 @@ label{
 }
 input{
 	width: 60%;
-	height: 20px;
+	height: 40px;
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
