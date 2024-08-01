@@ -1,7 +1,9 @@
 <mat-tab-group>
     @for (category of categoryList; track category) {
-        <mat-tab [label]="category.name">
+        <mat-tab [label]="category.categoryName">
+          <ng-template matTabContent>
             <app-categoty-content [categoryId]="category.id"></app-categoty-content>
+          </ng-template>
         </mat-tab>
     }
 </mat-tab-group>

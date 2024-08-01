@@ -28,13 +28,13 @@ export class UserLOginComponent  {
 
  constructor(private http:HttpClient,private router:Router)
  {
- 
+
 
  }
  onSignup()
  {
 
-  this.http.post('https://localhost:7189/api/User/Add',(this.signupObj)).subscribe(
+  this.http.post('http://localhost:5062/api/User/Add',(this.signupObj)).subscribe(
     (res:any) => {
       if(res)
       {
@@ -48,21 +48,22 @@ export class UserLOginComponent  {
  onLogin()
  {
   debugger
-  this.http.get('https://localhost:7189/api/User/FetchbyUserName?email='+ this.loginObj.Email+'&password='+this.loginObj.Password).subscribe(
+  this.http.get('http://localhost:5062/api/User/FetchbyUserName?email='+ this.loginObj.Email+'&password='+this.loginObj.Password).subscribe(
     (res:any) => {
       if(res)
       {
+        this.router.navigate(['/pos-dashboard'])
         console.log("Success register");
         console.log(res);
       }
-      
+
     })
  }
 
 }
 
-  
-  
+
+
 
 
 

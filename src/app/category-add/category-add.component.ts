@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MasterService } from '../_service/master.service';
 import { MeterialModule } from '../../_module/Meterial.Module';
 import { CategotyContentComponent } from '../categoty-content/categoty-content.component';
+import { CategoryService } from '../_service/api/category.service';
+import { Category } from '../../_model/category.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-category-add',
@@ -10,27 +13,34 @@ import { CategotyContentComponent } from '../categoty-content/categoty-content.c
   templateUrl: './category-add.component.html',
   styleUrl: './category-add.component.css'
 })
-export class CategoryAddComponent implements OnInit {
-  categoryList: { id: number, name: string }[] = [
-    { "id": 0, "name": "pizza" },
-    { "id": 1, "name": "kottu" },
-    { "id": 2, "name": "rice" }
-  ];
+export class CategoryAddComponent implements OnInit, OnDestroy {
+
+  categoryList: Category[] = [];
+  countOfCategories!: number;
+  subscriptions: Subscription = new Subscription();
 
   constructor(
-    private service: MasterService
-  ){}
+    private service: MasterService,
+    private categoryService: CategoryService
+  ) { }
+
+
   // postData !: posts ;
   ngOnInit(): void {
     this.LoadInitialData();
 
   }
   LoadInitialData() {
-    // this.service.getAll().subscribe(item => { this.postData = item;
-    console.log('check');
+    this.categoryService.getCategories().subscribe(res => {
+      if (res) {
+        this.countOfCategories = res.countofCategories;
+        this.categoryList = res.allCategories;
+      }
+    });
   }
 
-
-
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 
 }

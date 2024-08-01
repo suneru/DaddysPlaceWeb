@@ -14,8 +14,13 @@
 
           <div class="col-8">
             <div class="row">
-              <div class="col"><span class="fw-bold">{{item.name}}</span></div>
-              <div class="col float-right"><span class="">{{item.price | currency:'Rs. ':'symbol'}}</span></div>
+              <div class="col-4"><span class="fw-bold">{{item.name}}</span></div>
+              <div class="col d-flex justify-content-end">
+                <span [ngClass]="{'text-decoration-line-through': item.discount != 0 && item.discount != null}">{{item.price | currency:'Rs. ':'symbol'}}</span> &nbsp; &nbsp;
+                @if (item.discount != 0 && item.discount != null) {
+                  <span class="">{{item.discountedPrice | currency:'Rs. ':'symbol'}}</span>
+                }
+              </div>
             </div>
             <div class="row"><span>Quantity - {{item.quantity}} | Discount - {{item.discount | percent}}</span>
             </div>
@@ -33,22 +38,25 @@
   }
 </div>
 
-<div class="tot">
-  <div class="row">
-    <div class="col-8">Discount</div>
-    <div class="col-4">{{cartDataService.cartDiscount}}</div>
+@if (cartDataService.cart.length != 0) {
+  <div class="tot mt-3">
+    <div class="row">
+      <div class="col-8">Fee</div>
+      <div class="col-4 text-end">{{cartDataService.cartFee | currency:'Rs. ':'symbol'}}</div>
+    </div>
+    <div class="row">
+      <div class="col-8">Total</div>
+      <div class="col-4 text-end">{{cartDataService.cartTotal | currency:'Rs. ':'symbol'}}</div>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-8">{{cartDataService.cartFee}}</div>
-    <div class="col-4"></div>
-  </div>
-  <div class="row">
-    <div class="col-8">{{cartDataService.cartTotal}}</div>
-    <div class="col-4"></div>
-  </div>
-</div>
+}
 
-<div class="cal w-50">
-  cal
+<div class="cal mt-5 h-25 row">
+  <div class="col">
+    <button mat-flat-button class=" w-100 h-25" (click)="letsPay()">Payment</button>
+  </div>
+  <div class="col">
+    <button mat-flat-button class="w-100 h-25" (click)="letsPay()">Print KOT</button>
+  </div>
 </div>
 

@@ -19,7 +19,10 @@ export class CartComponent implements OnInit  {
 
   }
 
+  letsPay(): void{
+    console.log("let's pay");
 
+  }
 
 
 }

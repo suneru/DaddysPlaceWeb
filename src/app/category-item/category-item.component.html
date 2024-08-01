@@ -6,6 +6,9 @@
     <span>{{item.name}}</span>
   </div>
   <div class="row text-center">
-    <span>{{item.price | currency:'Rs. ':'symbol'}}</span>
+    <span [ngClass]="{'text-decoration-line-through': item.discount != 0 && item.discount != null}">{{item.price | currency:'Rs. ':'symbol'}}</span>
+    @if (item.discount != 0 && item.discount != null) {
+      <span>{{item.price - item.price*item.discount | currency:'Rs. ':'symbol'}}</span>
+    }
   </div>
 </div>

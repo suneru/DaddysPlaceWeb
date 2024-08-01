@@ -9,7 +9,6 @@ export class CartDataService {
   public cart: ItemCart[] = [];
   public catagorizedCart: Item[] = [];
   public cartTotal: number = 0;
-  public cartDiscount: number = 0;
   public cartFee: number = 0;
 
   constructor() { }
@@ -20,14 +19,15 @@ export class CartDataService {
     const name = data.name;
     const price = data.price;
     const image = data.image;
-    const discount = 0;
+    const discount = data.discount ?? 0;
+    const discountedPrice = price-(price*discount);
 
     if (index !== -1) {
       this.cart[index].quantity += 1;
     } else {
-      this.cart.push({ id, name, price, image, discount, quantity: 1 });
+      this.cart.push({ id, name, price, image, discount, quantity: 1, discountedPrice });
     }
-    this.cartFee += price;
+    this.cartFee += discountedPrice;
   }
 
   passToRemoveFromCart(id: number): void {
@@ -39,7 +39,7 @@ export class CartDataService {
       } else {
         this.cart.splice(itemIndex, 1);
       }
-      this.cartFee -= item.price;
+      this.cartFee -= item.discountedPrice;
     }
   }
 
