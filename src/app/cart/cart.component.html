@@ -1,0 +1,54 @@
+<div>
+  <p>Cart</p>
+</div>
+
+<div class="cart-items overflow-auto h-50">
+  @for (item of cartDataService.cart; track $index) {
+    <mat-card appearance="outlined" class="mb-2">
+      <mat-card-content>
+        <div class="align-items-md-center d-flex row">
+
+          <div class="col-2">
+            <img class="rounded-item" [src]="item.image" width="100%">
+          </div>
+
+          <div class="col-8">
+            <div class="row">
+              <div class="col"><span class="fw-bold">{{item.name}}</span></div>
+              <div class="col float-right"><span class="">{{item.price | currency:'Rs. ':'symbol'}}</span></div>
+            </div>
+            <div class="row"><span>Quantity - {{item.quantity}} | Discount - {{item.discount | percent}}</span>
+            </div>
+          </div>
+
+          <div class="col-2">
+              <button mat-icon-button  (click)="cartDataService.passToRemoveFromCart(item.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>
+
+<div class="tot">
+  <div class="row">
+    <div class="col-8">Discount</div>
+    <div class="col-4">{{cartDataService.cartDiscount}}</div>
+  </div>
+  <div class="row">
+    <div class="col-8">{{cartDataService.cartFee}}</div>
+    <div class="col-4"></div>
+  </div>
+  <div class="row">
+    <div class="col-8">{{cartDataService.cartTotal}}</div>
+    <div class="col-4"></div>
+  </div>
+</div>
+
+<div class="cal w-50">
+  cal
+</div>
+

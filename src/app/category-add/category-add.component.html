@@ -1,5 +1,7 @@
 <mat-tab-group>
-    @for (tab of lotsOfTabs; track tab) {
-    <mat-tab [label]="tab">Content</mat-tab>
+    @for (category of categoryList; track category) {
+        <mat-tab [label]="category.name">
+            <app-categoty-content [categoryId]="category.id"></app-categoty-content>
+        </mat-tab>
     }
 </mat-tab-group>

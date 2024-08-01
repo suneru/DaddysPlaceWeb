@@ -1,0 +1,7 @@
+<mat-grid-list cols="8" rowHeight="1:2" class="overflow-y-scr">
+    @for (item of itemList; track item) {
+        <mat-grid-tile class="">
+            <app-category-item [item]="item"></app-category-item>
+        </mat-grid-tile>
+    }
+</mat-grid-list>

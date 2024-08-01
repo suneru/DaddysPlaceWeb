@@ -1,0 +1,11 @@
+<div class="wrapper" (click)="addToCart()">
+  <div class="row">
+    <img [src]="item.image" width="100%">
+  </div>
+  <div class="row text-center fw-bold">
+    <span>{{item.name}}</span>
+  </div>
+  <div class="row text-center">
+    <span>{{item.price | currency:'Rs. ':'symbol'}}</span>
+  </div>
+</div>
