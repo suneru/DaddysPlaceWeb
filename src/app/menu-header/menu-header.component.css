@@ -1,14 +1,16 @@
 .top-container {
     height: 100%;
+    
 }
 
 .sidenav-content {
     height: 100%;
+    background-color: #c1b0df;
 }
 
 .sidenav {
     padding: 20px;
-    background-color: bisque;
+    background-color: #c1b0df;
 }
 
 .spacer {

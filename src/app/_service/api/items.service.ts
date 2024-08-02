@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class ItemsService {
   ) { }
 
   getItems(categoryId: number): Observable<any> {
-    return this.httpClient.get("http://localhost:5062/api/Items/GetCategoryWiseProductItem?" + categoryId);
+    
+    return this.httpClient.get(`${environment.apiUrl}api/Items/GetCategoryWiseProductItem?=${categoryId}`);
   }
 }

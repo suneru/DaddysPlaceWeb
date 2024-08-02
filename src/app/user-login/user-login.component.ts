@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from '../environment/environment';
 @Component({
   selector: 'app-user-login',
   standalone: true,
@@ -34,27 +34,30 @@ export class UserLOginComponent  {
  onSignup()
  {
 
-  this.http.post('http://localhost:5062/api/User/Add',(this.signupObj)).subscribe(
+  
+  this.http.post(`${environment.apiUrl}api/User/Add`,(this.signupObj)).subscribe(
     (res:any) => {
       if(res)
       {
+        alert("Registration Successful");
         this.router.navigateByUrl('/user-login')
-        console.log(res);
-        console.log("Success register");
+                
       }
+    
     })
  }
 
  onLogin()
  {
-  debugger
-  this.http.get('http://localhost:5062/api/User/FetchbyUserName?email='+ this.loginObj.Email+'&password='+this.loginObj.Password).subscribe(
+  
+  this.http.get(`${environment.apiUrl}api/User/FetchbyUserName?email=${this.loginObj.Email}&password=${this.loginObj.Password}`).subscribe(
     (res:any) => {
       if(res)
       {
+        localStorage.setItem('LoginDetails',this.loginObj);
+         alert("Registration Successful");
         this.router.navigate(['/pos-dashboard'])
-        console.log("Success register");
-        console.log(res);
+       
       }
 
     })
