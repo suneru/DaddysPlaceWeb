@@ -14,6 +14,6 @@ export class ItemsService {
 
   getItems(categoryId: number): Observable<any> {
     
-    return this.httpClient.get(`${environment.apiUrl}api/Items/GetCategoryWiseProductItem?=${categoryId}`);
+    return this.httpClient.get(`${environment.apiUrl}api/Product/GetCategoryWiseProductItem/${categoryId}`);
   }
 }

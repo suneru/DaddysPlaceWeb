@@ -34,11 +34,11 @@ export class UserLOginComponent  {
  onSignup()
  {
 
-  
+ 
   this.http.post(`${environment.apiUrl}api/User/Add`,(this.signupObj)).subscribe(
     (res:any) => {
       if(res)
-      {
+      {        
         alert("Registration Successful");
         this.router.navigateByUrl('/user-login')
                 
