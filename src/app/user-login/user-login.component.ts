@@ -55,7 +55,7 @@ export class UserLOginComponent  {
       if(res)
       {
         localStorage.setItem('LoginDetails',this.loginObj);
-         alert("Registration Successful");
+        alert("Login Successful");
         this.router.navigate(['/pos-dashboard'])
        
       }
