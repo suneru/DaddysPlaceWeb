@@ -1,0 +1,61 @@
+
+<div class="row h-100">
+    <div class="col-4 px-4 pt-4">
+      <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+        
+          <div class="Product">
+            <form id="ProductDetails">
+              <label for="chk" aria-hidden="true">Product Add</label>
+              <input type="text" name="Name" placeholder="Product Name"  [(ngModel)]="ProductObj.Name"   required=""><br>
+              <input type="text" name="Price"  placeholder="Product Price"  [(ngModel)]="ProductObj.Price"  required=""><br>
+              <input type="text" name="Discount"  placeholder="Product Discount"  [(ngModel)]="ProductObj.Discount"  required=""><br>
+              <input type="text" name="Image"   placeholder="Product URL" [(ngModel)]="ProductObj.Image" required=""><br>
+              <input type="text" name="Category"   placeholder="Product Category" [(ngModel)]="ProductObj.Category" required=""><br>
+              
+              <button (click)="onProductAdd()" >ADD</button>
+            </form>
+          </div>
+    
+         
+      </div>
+            
+          
+              
+    </div>
+    <div class="col-8" >
+      
+      <h2>Product Details</h2>
+      <div class="table-wrapper">
+          <table class="fl-table">
+              <thead>
+              <tr>
+                  <th>Product ID</th>
+                  <th>Product Name</th>
+                  <th>Product Price</th>
+                  <th>Product Discount</th>
+                  <th>Product Image</th>
+                  <th>Category</th>
+                  <th>Action</th>
+                  
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of ItemsArray">
+                  <td>{{ item.id }} </td>
+                  <td>{{ item.name }} </td>
+                  <td>{{ item.price }} </td>
+                  <td>{{ item.discount }} </td>
+                  <td><img src={{item.image}}   width="150" height="150"> </td>
+                  <td>{{ item.categoryName }} </td>
+                  <td>
+                    <button type="button" >Edit</button>
+                    <button type="button" >Delete</button>
+                  </td>
+              </tr>
+              
+              <tbody>
+          </table>
+      </div>
+    </div>
+</div>
