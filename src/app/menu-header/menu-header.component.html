@@ -5,6 +5,7 @@
     <span>{{title}}</span>
     <span class="spacer"></span>
     <div>{{userName}}</div>
+    <button routerLink="user-logout"  mat-button>LogOut</button>
 </mat-toolbar>
 
 <mat-drawer-container class="top-container" autosize>
@@ -17,6 +18,12 @@
         </div>
         <div class="row mb-2">
             <button routerLink="product-add" (click)="drawer.toggle()" mat-button>Product</button>
+        </div>
+        <div class="row mb-2">
+            <ng-container *ngIf="userRole === 'Admin'">
+                <button routerLink="logindetails" (click)="drawer.toggle()" mat-button>Login Details</button>               
+            </ng-container>
+           
         </div>
     </mat-drawer>
 

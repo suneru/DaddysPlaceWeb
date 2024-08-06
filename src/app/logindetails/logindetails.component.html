@@ -1,0 +1,43 @@
+<div class="row h-100" >
+    <div lass="parent">
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+            <tr>
+                
+                <th>User ID</th>
+                <th>User Name</th>
+                <th>User Contact No</th>
+                <th>User Password</th>
+                <th>User Email</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>Action</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let user of UserArray"> 
+                <td> {{ user.id }}  </td>
+                <td> {{ user.name }} </td>
+                <td> {{ user.contactNumber }} </td>
+                <td> {{ user.password }} </td>
+                <td> {{ user.email }} </td>
+                <td [ngStyle]="{'color': user.status==1 ? 'green' : 'red'}">
+                    {{ user.status ? 'Active' : 'Inactive' }}
+                </td>
+                <td> {{ user.role }} </td>
+                <td>
+                    <button type="button" style="background-color: green;" (click)="updateUserStatus(user.id, true)">Active</button>
+                    <button type="button" style="background-color: red;" (click)="updateUserStatus(user.id, false)">Deactive</button>
+                    <button type="button" style="background-color: rgb(88, 83, 170);" (click)="updateUserRole(user.id, 'Admin')">Make a Admin</button>
+                    <button type="button" style="background-color: rgb(216, 167, 76);" (click)="updateUserRole(user.id, 'User')">Make a User</button>
+                    <!-- <button type="button" (click)="deleteItem(item.id)" >Delete</button> -->
+                </td>
+            </tr>
+            
+            <tbody>
+        </table>
+    </div>
+</div>
+</div>

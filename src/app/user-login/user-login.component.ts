@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environment/environment';
+
+
 @Component({
   selector: 'app-user-login',
   standalone: true,
@@ -10,7 +12,7 @@ import { environment } from '../environment/environment';
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.css'
 })
-export class UserLOginComponent  {
+export class UserLOginComponent   {
 
  loginObj: any = {
   Email:"",
@@ -19,7 +21,7 @@ export class UserLOginComponent  {
 
  signupObj: any = {
   Name:"",
-  ContactNumber:"000000000",
+  ContactNumber:"",
   Password:"",
   Email:"",
   Status:true,
@@ -28,8 +30,11 @@ export class UserLOginComponent  {
 
  constructor(private http:HttpClient,private router:Router)
  {
+ 
+ }
 
-
+ onint(){
+  this.clearForm();  
  }
  onSignup()
  {
@@ -40,6 +45,7 @@ export class UserLOginComponent  {
       if(res)
       {        
         alert("Registration Successful");
+        this.clearForm();     
         this.router.navigateByUrl('/user-login')
                 
       }
@@ -54,13 +60,22 @@ export class UserLOginComponent  {
     (res:any) => {
       if(res)
       {
-        localStorage.setItem('LoginDetails',this.loginObj);
+        sessionStorage.setItem('UserId', res.id);  
+        sessionStorage.setItem('UserEmail', res.email);  
+        sessionStorage.setItem('Username', res.name);    
+        sessionStorage.setItem('Role', res.role);        
         alert("Login Successful");
+        this.clearForm();  
         this.router.navigate(['/pos-dashboard'])
        
       }
 
     })
+ }
+
+ clearForm(){
+  (<HTMLFormElement>document.getElementById("SignUpDetails")).reset();
+  (<HTMLFormElement>document.getElementById("LoginDetails")).reset();
  }
 
 }

@@ -20,12 +20,9 @@ export class ProductAddComponent implements OnInit {
     Price:"",
     Discount:"",
     Image:"",
-    Category:"" 
-    
+    Category:""     
    }
-
-   
-
+ 
    constructor(private http:HttpClient,private productService: ProductService)
  {
  }
@@ -36,6 +33,22 @@ export class ProductAddComponent implements OnInit {
   });
  }
 
+ deleteItem(itemId: number)
+ {
+  this.http.delete<any>(`${environment.apiUrl}api/Product/Delete/${itemId}`)
+    .subscribe(
+      data => {
+        alert('Item deleted successfully');
+        this.productService.getProductData().subscribe((res: any[]) => {
+          this.ItemsArray = res;
+        });         
+      },
+      error => {
+        console.error('Error deleting item', error);
+        // Handle the error here
+      }
+    );
+ }
 
  onProductAdd()
  { 
@@ -52,6 +65,8 @@ export class ProductAddComponent implements OnInit {
     
     })
  }
+ 
+
  clearForm(){
   (<HTMLFormElement>document.getElementById("ProductDetails")).reset();
  }
