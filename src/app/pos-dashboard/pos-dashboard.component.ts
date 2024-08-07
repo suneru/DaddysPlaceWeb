@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CategoryAddComponent } from '../category-add/category-add.component';
 import { CartComponent } from '../cart/cart.component';
- import { UserLOginComponent } from '../user-login/user-login.component';
+import { UserLOginComponent } from '../user-login/user-login.component';
+
 @Component({
   selector: 'app-pos-dashboard',
   standalone: true,
@@ -11,4 +12,8 @@ import { CartComponent } from '../cart/cart.component';
 })
 export class PosDashboardComponent {
 
+
+
+
+ 
 }
