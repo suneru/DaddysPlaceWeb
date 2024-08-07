@@ -10,6 +10,7 @@ export class CartDataService {
   public catagorizedCart: Item[] = [];
   public cartTotal: number = 0;
   public cartFee: number = 0;
+  public billOrderNo: number = 0;
 
   constructor() { }
 

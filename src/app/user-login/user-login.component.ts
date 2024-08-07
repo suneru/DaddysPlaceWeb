@@ -30,44 +30,44 @@ export class UserLOginComponent   {
 
  constructor(private http:HttpClient,private router:Router)
  {
- 
+
  }
 
  onint(){
-  this.clearForm();  
+  this.clearForm();
  }
  onSignup()
  {
 
- 
+
   this.http.post(`${environment.apiUrl}api/User/Add`,(this.signupObj)).subscribe(
     (res:any) => {
       if(res)
-      {        
+      {
         alert("Registration Successful");
-        this.clearForm();     
+        this.clearForm();
         this.router.navigateByUrl('/user-login')
-                
+
       }
-    
+
     })
  }
 
  onLogin()
  {
-  
+
   this.http.get(`${environment.apiUrl}api/User/FetchbyUserName?email=${this.loginObj.Email}&password=${this.loginObj.Password}`).subscribe(
     (res:any) => {
       if(res)
       {
-        sessionStorage.setItem('UserId', res.id);  
-        sessionStorage.setItem('UserEmail', res.email);  
-        sessionStorage.setItem('Username', res.name);    
-        sessionStorage.setItem('Role', res.role);        
+        sessionStorage.setItem('UserId', res.id);
+        sessionStorage.setItem('UserEmail', res.email);
+        sessionStorage.setItem('Username', res.name);
+        sessionStorage.setItem('Role', res.role);
         alert("Login Successful");
-        this.clearForm();  
-        this.router.navigate(['/pos-dashboard'])
-       
+        this.clearForm();
+        window.location.replace("http://localhost:4200/pos-dashboard");
+
       }
 
     })

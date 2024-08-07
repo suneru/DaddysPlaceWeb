@@ -1,14 +1,18 @@
-<div class="row h-100" id="htmlData">  
-<h2>KOT</h2>
-<h2>Order No:1</h2>
-<table>
-<tr>
-    <th>Menu Description</th><th>Qty</th>
-</tr>
-<!-- <tr *ngFor="let item of KotObj">
-<td>{{ item.id }} </td>
-<td>{{ item.name }} </td>
-</tr> -->
-</table>
+<div class="row h-100" id="htmlData">
+  <h2>KOT</h2>
+  <h2>Order No: {{cartDataService.billOrderNo}}</h2>
+  <table>
+    <tr>
+      <th>Menu Description</th>
+      <th>Qty</th>
+    </tr>
+    @for (item of cartDataService.cart; track $index) {
+    <tr>
+      <td>{{ item.id }} </td>
+      <td>{{ item.name }} </td>
+    </tr>
+    }
+
+  </table>
 
 </div>

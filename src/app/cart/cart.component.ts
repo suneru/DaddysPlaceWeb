@@ -1,9 +1,10 @@
 import { CartDataService } from './../_service/data/cart.data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MeterialModule } from '../../_module/Meterial.Module';
 import { CommonModule } from '@angular/common';
 import { BillService } from '../_service/api/bill.service';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -11,16 +12,24 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
-export class CartComponent implements OnInit  {
- 
-  public billOrderNo: any[] = [];
-  
-  constructor(public cartDataService: CartDataService,private billService: BillService){}
+export class CartComponent implements OnInit, OnDestroy  {
+
+  subscriptions: Subscription = new Subscription();
+
+  constructor(
+    public cartDataService: CartDataService,
+    private billService: BillService,
+    private router: Router,
+  ){}
 
   ngOnInit(): void {
-    this.billService.getNewOrderNoData().subscribe((res: any[]) => {
-      this.billOrderNo = res;
-    });
+    this.getNewOrderNoData();
+  }
+
+  getNewOrderNoData() : void {
+    this.subscriptions.add(this.billService.getNewOrderNoData().subscribe((res: any) => {
+      this.cartDataService.billOrderNo = res.billOrderNo;
+    }));
   }
 
   letsPay(): void{
@@ -28,8 +37,13 @@ export class CartComponent implements OnInit  {
 
   }
 
-  
+  printKOT(): void{
+    this.router.navigate(['/kotPrint']);
 
+  }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 
 }

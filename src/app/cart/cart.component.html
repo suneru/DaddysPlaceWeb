@@ -1,6 +1,6 @@
 <div>
   <!-- <p>Cart </p> -->
-  <p>Order No: {{billOrderNo}} </p>
+  <p>Order No: {{cartDataService.billOrderNo}} </p>
 </div>
 
 <div class="cart-items overflow-auto h-50">
@@ -57,7 +57,7 @@
     <button mat-flat-button class=" w-100 h-25" (click)="letsPay()">Payment</button>
   </div>
   <div class="col">
-    <button mat-flat-button class="w-100 h-25" routerLink="kotPrint" >Print KOT</button>
+    <button mat-flat-button class="w-100 h-25" (click)="printKOT()">Print KOT</button>
   </div>
 </div>
 
