@@ -1,18 +1,19 @@
 <mat-toolbar color="blue">
-    <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
+    @if (isLogIn) {
+      <button mat-icon-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+      </button>
+    }
     <span>{{title}}</span>
     <span class="spacer"></span>
     <div>{{userName}}</div>
-    <button routerLink="user-logout"  mat-button>LogOut</button>
+    @if (isLogIn) {
+      <button (click)="logout()" mat-button>Log out</button>
+    }
 </mat-toolbar>
 
 <mat-drawer-container class="top-container" autosize>
     <mat-drawer #drawer class="sidenav" mode="over">
-        <div class="row my-2">
-            <button routerLink="user-login" (click)="drawer.toggle()" mat-button>Login</button>
-        </div>
         <div class="row mb-2">
             <button routerLink="pos-dashboard" (click)="drawer.toggle()" mat-button>POS Dashboard</button>
         </div>
@@ -21,9 +22,9 @@
         </div>
         <div class="row mb-2">
             <ng-container *ngIf="userRole === 'Admin'">
-                <button routerLink="logindetails" (click)="drawer.toggle()" mat-button>Login Details</button>               
+                <button routerLink="logindetails" (click)="drawer.toggle()" mat-button>Login Details</button>
             </ng-container>
-           
+
         </div>
     </mat-drawer>
 

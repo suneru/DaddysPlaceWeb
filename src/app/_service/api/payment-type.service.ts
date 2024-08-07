@@ -6,13 +6,13 @@ import { environment } from '../../environment/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ItemsService {
+export class PaymentTypeService {
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
-  add(cart: any): Observable<any> {
-    return this.httpClient.post(`${environment.apiUrl}api/Item/Add`,cart);
+  getPaymentTypes(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}api/PaymentType`);
   }
 }

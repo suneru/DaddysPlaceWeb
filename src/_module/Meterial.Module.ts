@@ -13,6 +13,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
     exports: [
@@ -30,6 +31,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         MatSidenavModule,
         MatTabsModule,
         MatGridListModule,
+        MatRadioModule,
     ]
 })
 

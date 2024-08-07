@@ -1,0 +1,94 @@
+<form [formGroup]="form">
+  <div class="row px-4">
+    <div class="col-3">
+      <div class="row">
+        <div class="row">
+          <h3>Payment {{cartDataService.billOrderNo != 0 ? "- " + cartDataService.billOrderNo : ""}}</h3>
+        </div>
+
+        <div class="row px-4">
+          @if (cartDataService.cart.length != 0) {
+          <div class="row">
+            <mat-radio-group class="radio-group" formControlName="MethodOfPayment" (change)="methodOfPaymentChange()">
+              <label>Select Payment Type</label>
+              @for (type of paymentType; track type) {
+              <mat-radio-button class="" [value]="type.id">{{type.paymentType}}</mat-radio-button>
+              }
+            </mat-radio-group>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="outline">
+              <mat-label>Received Amount</mat-label>
+              <input matInput type="number" formControlName="Pay" (change)="payChange()" placeholder="0" />
+              <span matTextPrefix>Rs.&nbsp;</span>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <div class="col-6">Total</div>
+            <div class="col-6 text-end">{{cartDataService.cartFee | currency:'Rs. ':'symbol'}}</div>
+
+          </div>
+          <div class="row">
+            <div class="col-6">Amount</div>
+            <div class="col-6 text-end">{{this.cartDataService.pay | currency:'Rs. ':'symbol'}}</div>
+          </div>
+          <div class="row">
+            <div class="col-6">Refund</div>
+            <div class="col-6 text-end">{{cartDataService.refund | currency:'Rs. ':'symbol'}}</div>
+          </div>
+
+          <div class="row pt-5">
+            <button mat-flat-button (click)="payingSelected()">Pay</button>
+          </div>
+          }
+          @else {
+          Please add items to cart
+          }
+        </div>
+      </div>
+
+    </div>
+    <div class="col-9 pt-5 px-2">
+      <mat-table [dataSource]="cartDataService.cart" class="mat-elevation-z8">
+        <ng-container matColumnDef="itemId">
+          <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eachPrice">
+          <mat-header-cell *matHeaderCellDef> Each Price </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.price | currency:'Rs. ':'symbol'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="discount">
+          <mat-header-cell *matHeaderCellDef> Discount </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.discount | percent}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef> Discounted price </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.discountedPrice | currency:'Rs. ':'symbol'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalItemPrice">
+          <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.totalItemPrice | currency:'Rs. ':'symbol'}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+    </div>
+  </div>
+</form>

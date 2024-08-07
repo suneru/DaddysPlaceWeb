@@ -22,4 +22,8 @@ export class BillService {
     return this.httpClient.get<any[]>(this.api);
   }
 
+  add(bill : any): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}api/Bill/Add`, bill);
+}
+
 }
