@@ -12,7 +12,7 @@ import { environment } from '../environment/environment';
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.css'
 })
-export class UserLOginComponent   {
+export class UserLOginComponent implements OnInit  {
 
  loginObj: any = {
   Email:"",
@@ -33,9 +33,10 @@ export class UserLOginComponent   {
 
  }
 
- onint(){
-  this.clearForm();
- }
+  ngOnInit(): void {
+    this.clearForm();
+  }
+
  onSignup()
  {
 

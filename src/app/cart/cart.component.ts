@@ -33,8 +33,7 @@ export class CartComponent implements OnInit, OnDestroy  {
   }
 
   letsPay(): void{
-    console.log("let's pay");
-
+    this.router.navigate(['/order']);
   }
 
   printKOT(): void{

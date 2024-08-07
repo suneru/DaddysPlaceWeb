@@ -8,8 +8,8 @@
     </tr>
     @for (item of cartDataService.cart; track $index) {
     <tr>
-      <td>{{ item.id }} </td>
       <td>{{ item.name }} </td>
+      <td>{{ item.quantity }} </td>
     </tr>
     }
 

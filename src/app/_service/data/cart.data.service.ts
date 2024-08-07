@@ -11,6 +11,9 @@ export class CartDataService {
   public cartTotal: number = 0;
   public cartFee: number = 0;
   public billOrderNo: number = 0;
+  public paymentType: number | null = null;
+  public pay: number = 0;
+  public refund: number = 0;
 
   constructor() { }
 
@@ -22,11 +25,13 @@ export class CartDataService {
     const image = data.image;
     const discount = data.discount ?? 0;
     const discountedPrice = price-(price*discount);
+    const totalItemPrice = discountedPrice;
 
     if (index !== -1) {
       this.cart[index].quantity += 1;
+      this.cart[index].totalItemPrice = discountedPrice * this.cart[index].quantity;
     } else {
-      this.cart.push({ id, name, price, image, discount, quantity: 1, discountedPrice });
+      this.cart.push({ id, name, price, image, discount, quantity: 1, discountedPrice, totalItemPrice });
     }
     this.cartFee += discountedPrice;
   }
@@ -37,6 +42,7 @@ export class CartDataService {
       const item = this.cart[itemIndex];
       if (item.quantity > 1) {
         item.quantity -= 1;
+        item.totalItemPrice = item.discountedPrice * item.quantity;
       } else {
         this.cart.splice(itemIndex, 1);
       }
@@ -46,6 +52,17 @@ export class CartDataService {
 
   itemCategorize(): void {
 
+  }
+
+  resetParams(): void {
+    this.cart = []
+    this.catagorizedCart = []
+    this.cartTotal = 0
+    this.cartFee = 0
+    this.billOrderNo = 0
+    this.paymentType = null
+    this.pay = 0
+    this.refund = 0
   }
 
 

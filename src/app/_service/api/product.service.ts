@@ -20,4 +20,8 @@ export class ProductService {
   getProductData(): Observable<any[]> {
     return this.httpClient.get<any[]>(this.api);
   }
+
+  getItems(categoryId: number): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}api/Product/GetCategoryWiseProductItem/${categoryId}`);
+  }
 }
