@@ -3,7 +3,7 @@
   <p>Order No: {{cartDataService.billOrderNo}} </p>
 </div>
 
-<div class="cart-items overflow-auto h-50">
+<div class="cart-items overflow-auto height-custom">
   @for (item of cartDataService.cart; track $index) {
     <mat-card appearance="outlined" class="mb-2">
       <mat-card-content>

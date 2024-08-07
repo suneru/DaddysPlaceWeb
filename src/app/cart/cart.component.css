@@ -1,3 +1,7 @@
 .rounded-item {
   border-radius: 5px;
 }
+
+.height-custom {
+  max-height: 50vh !important;
+}
