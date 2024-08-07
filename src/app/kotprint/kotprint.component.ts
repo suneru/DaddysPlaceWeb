@@ -1,6 +1,7 @@
 import { CartDataService } from './../_service/data/cart.data.service';
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,ViewChild,ElementRef } from '@angular/core';
 import {jsPDF } from 'jspdf';
+
 import html2canvas from 'html2canvas';
 
 @Component({
@@ -15,7 +16,9 @@ export class KotprintComponent  implements OnInit{
    constructor(
     public cartDataService: CartDataService,
    ) {}
-
+   @ViewChild('htmlData')
+  htmlData!: ElementRef;
+  
   ngOnInit(): void {
    this.openPDF()
   }
