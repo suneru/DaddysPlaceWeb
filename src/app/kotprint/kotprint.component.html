@@ -1,14 +1,14 @@
 <div class="row h-30" id="htmlData">
  
   <table>
-    <tr><th></th><th>KOT</th><th></th></tr>
-    <tr><th></th><th>Order No: {{cartDataService.billOrderNo}}</th><th></th></tr>
+    <tr><th></th><th></th><th>KOT</th><th></th></tr>
+    <tr><th></th><th></th><th>Order No: {{cartDataService.billOrderNo}}</th><th></th></tr>
     <tr>
-        <th></th><th>Menu Description</th>
+      <th></th><th></th><th>Menu Description</th>
       <th>Qty</th>
     </tr>
     @for (item of cartDataService.cart; track $index) {
-    <tr>
+    <tr><td></td>
       <td></td><td>{{ item.name }} </td>
       <td>{{ item.quantity }}</td>
     </tr>

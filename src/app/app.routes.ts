@@ -6,6 +6,7 @@ import { LogindetailsComponent } from './logindetails/logindetails.component';
 import { KotprintComponent } from './kotprint/kotprint.component';
 import { OrderComponent } from './order/order.component';
 import { AuthGuard } from './_service/authGuard';
+import { ReportComponent } from './report/report.component';
 
 
 export const routes: Routes = [
@@ -16,4 +17,5 @@ export const routes: Routes = [
     { path: 'logindetails', component: LogindetailsComponent, canActivate: [AuthGuard]},
     { path: 'kotPrint', component: KotprintComponent, canActivate: [AuthGuard]},
     { path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
+    { path: 'report', component: ReportComponent, canActivate: [AuthGuard]},
 ];

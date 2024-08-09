@@ -1,0 +1,41 @@
+
+<div class="row h-100">
+ 
+   
+    <div >
+        <table class="fl-table">
+            <thead>
+            <tr><th>Start Date:</th><td><input type="date" id="startDate" name="startDate"  [(ngModel)]="ReportObj.startDate"></td></tr>
+            <tr><th>End Date:</th><td><input type="date" id="endDate" name="endDate"  [(ngModel)]="ReportObj.endDate"></td></tr>
+            <tr><th> </th><td><button type="button" (click)="funtiongetReportData()" >Search</button></td></tr>
+            <tr>
+                
+                <th>Product ID</th>
+                <th>Product Date</th>
+                <th>Cashier Name</th>
+                <th>Payment Method</th>
+                <th>Bill Amount</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ItemsArray">
+                
+                <td>{{ item.id }} </td>
+                <td>{{ item.createOn }} </td>
+                <td>{{ item.email }} </td>
+                <td>{{ item.paymentType }}</td>
+                <td>{{ item.billTotal }} </td>
+               
+            </tr>    
+            <tr>
+                <td>Net Sales :</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="custom-table-data">{{totalBill}} </td></tr>
+        </table>
+        
+    </div>
+
+</div>

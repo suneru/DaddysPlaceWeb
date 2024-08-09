@@ -26,6 +26,12 @@
             </ng-container>
 
         </div>
+        <div class="row mb-2">
+            <ng-container *ngIf="userRole === 'Admin'">
+                <button routerLink="report" (click)="drawer.toggle()" mat-button>Reports</button>
+            </ng-container>
+
+        </div>
     </mat-drawer>
 
     <div class="sidenav-content">
