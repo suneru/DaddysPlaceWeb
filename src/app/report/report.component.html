@@ -3,6 +3,7 @@
  
    
     <div >
+        <h2>Date Wise Net Sales Report Generation</h2>
         <table class="fl-table">
             <thead>
             <tr><th>Start Date:</th><td><input type="date" id="startDate" name="startDate"  [(ngModel)]="ReportObj.startDate"></td></tr>
@@ -10,8 +11,8 @@
             <tr><th> </th><td><button type="button" (click)="funtiongetReportData()" >Search</button></td></tr>
             <tr>
                 
-                <th>Product ID</th>
-                <th>Product Date</th>
+                <th>Order Number</th>
+                <th>Order Date</th>
                 <th>Cashier Name</th>
                 <th>Payment Method</th>
                 <th>Bill Amount</th>

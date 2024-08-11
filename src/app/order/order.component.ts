@@ -85,11 +85,8 @@ export class OrderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.cartDataService.refund = this.cartDataService.pay - this.cartDataService.cartFee;
   }
 
-  payingSelected() {
-    const nowDate: Date = new Date();
-    this.addCart();
-    this.addBill(nowDate);
-    this.addPayment();
+  payingSelected() {    
+    this.addCart();        
   }
 
   addCart(): void {
@@ -105,10 +102,10 @@ export class OrderComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.subscriptions.add(this.itemsService.add(cart).subscribe((res) => {
       if (res) {
+        const nowDate: Date = new Date();
         console.warn(res);
-        console.log("success");
-        this.cartDataService.resetParams();
-        this.router.navigate(['/pos-dashboard']);
+        console.log("success");      
+        this.addBill(nowDate);
       }
     }));
   }
@@ -126,6 +123,7 @@ export class OrderComponent implements OnInit, AfterViewInit, OnDestroy {
       if (res) {
         console.warn(res);
         console.log("success");
+        this.addPayment();
       }
     }));
   }
@@ -142,6 +140,9 @@ export class OrderComponent implements OnInit, AfterViewInit, OnDestroy {
       if (res) {
         console.warn(res);
         console.log("success");
+        alert("Payment Successful");
+          this.cartDataService.resetParams();
+        this.router.navigate(['/pos-dashboard']);
       }
     }));
   }
